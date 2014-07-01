@@ -1,0 +1,55 @@
+{
+  "name": "flow-histc",
+  "version": "0.0.0",
+  "description": "Reduce transform stream which computes a histogram over streamed data.",
+  "author": {
+    "name": "Athan Reines",
+    "email": "athan@nodeprime.com"
+  },
+  "contributors": [
+    {
+      "name": "Athan Reines",
+      "email": "athan@nodeprime.com"
+    }
+  ],
+  "scripts": {
+    "test": "mocha"
+  },
+  "main": "./lib",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kgryte/flow-histc.git"
+  },
+  "keywords": [
+    "stream",
+    "writable",
+    "readable",
+    "transform",
+    "flow",
+    "flow.io",
+    "histogram",
+    "histc",
+    "reduce",
+    "statistics",
+    "stats"
+  ],
+  "bugs": {
+    "url": "https://github.com/kgryte/flow-histc/issues"
+  },
+  "dependencies": {
+    "stream-combiner": "~0.2.0",
+    "binsearch": "~0.0.0",
+    "flow-reduce": "~0.0.0",
+    "flow-map": "~0.0.0"
+  },
+  "devDependencies": {
+    "mocha": "1.x.x",
+    "chai": "1.x.x"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ]
+}
