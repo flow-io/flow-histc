@@ -14,38 +14,33 @@ $ npm install flow-histc
 ## Examples
 
 ``` javascript
-var // Flow histogram stream generator:
+var eventStream = require( 'event-stream' ),
 	hStream = require( 'flow-histc' );
 
-var data = new Array( 1000 ),
-	edges = new Array( 22 ),
-	stream;
-
 // Create some data...
-for ( var i = 0; i < 1000; i++ ) {
+var data = new Array( 1000 );
+for ( var i = 0; i < data.length; i++ ) {
 	data[ i ] = Math.random();
 }
 
+// Create a readable stream:
+var readStream = eventStream.readArray( data );
+
 // Create the bin edges... (centering the bins)
-for ( var j = 0; j < 22; j++ ) {
+var edges = new Array( 22 );
+for ( var j = 0; j < edges.length; j++ ) {
 	edges[ j ] = -0.025 + j*0.05;
 }
 
-// Create a new stream:
-stream = hStream()
+// Create a new histogram stream:
+var stream = hStream()
 	.edges( edges )
 	.stream();
 
-// Add a listener:
-stream.on( 'data', function( counts ) {
-	console.log( 'Counts: ' + JSON.stringify( counts ) );
-});
-
-// Write the data to the stream...
-for ( var k = 0; k < data.length; k++ ) {
-	stream.write( data[ k ] );
-}
-stream.end();
+// Create a pipeline:
+readStream.pipe( stream )
+	.pipe( eventStream.stringify() )
+	.pipe( process.stdout );
 ```
 
 ## Tests
